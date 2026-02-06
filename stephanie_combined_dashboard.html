@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Stephanie - Drone vs Rider Dashboard</title>
+</head>
+<body style="margin:0;padding:16px;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f1f5f9;">
+    <div style="max-width:1100px;margin:0 auto;background:white;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);overflow:hidden;">
+        
+        <!-- Header - Compact -->
+        <div style="background:linear-gradient(135deg,#0f172a,#1e293b);padding:16px 24px;color:white;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+                <h1 style="margin:0;font-size:20px;font-weight:700;">Drone vs Rider Comparison</h1>
+                <div style="font-size:12px;opacity:0.7;margin-top:4px;">Stephanie | Wowburger</div>
+                <div style="font-size:11px;opacity:0.5;margin-top:2px;">Items ordered - The Full Feed (Bacon Cheeseburger + Fries + Drink + Sundae)</div>
+            </div>
+            <div style="display:flex;gap:12px;font-size:10px;">
+                <div style="background:rgba(16,185,129,0.3);padding:6px 10px;border-radius:4px;">
+                    <div style="font-size:8px;margin-bottom:2px;"><span style="opacity:0.7;">Order ID · Drone</span> <span style="font-weight:700;color:white;">(18 Jan)</span></div>
+                    <div style="font-family:monospace;">50554140683</div>
+                </div>
+                <div style="background:rgba(59,130,246,0.3);padding:6px 10px;border-radius:4px;">
+                    <div style="font-size:8px;margin-bottom:2px;"><span style="opacity:0.7;">Order ID · Rider</span> <span style="font-weight:700;color:white;">(24 Jan)*</span></div>
+                    <div style="font-family:monospace;">50569911744</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Metrics Banner -->
+        <div style="display:flex;border-bottom:1px solid #e2e8f0;">
+            <div style="flex:1;padding:14px 20px;text-align:center;background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-right:1px solid #e2e8f0;">
+                <div style="font-size:10px;color:#059669;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Drone</div>
+                <div style="font-size:28px;font-weight:800;color:#059669;margin:4px 0;">40 min</div>
+                <div style="font-size:10px;color:#166534;">On Time</div>
+            </div>
+            <div style="flex:1;padding:14px 20px;text-align:center;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-right:1px solid #e2e8f0;">
+                <div style="font-size:10px;color:#2563eb;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Rider</div>
+                <div style="font-size:28px;font-weight:800;color:#2563eb;margin:4px 0;">35 min</div>
+                <div style="font-size:10px;color:#166534;">9 min early</div>
+            </div>
+            <div style="flex:1;padding:14px 20px;text-align:center;background:#fafafa;">
+                <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Time Saved</div>
+                <div style="font-size:28px;font-weight:800;color:#2563eb;margin:4px 0;">5 min</div>
+                <div style="font-size:10px;color:#2563eb;">Rider wins</div>
+            </div>
+        </div>
+        
+        <!-- Main Content - Two Columns -->
+        <div style="display:flex;">
+            
+            <!-- Left Column: Ops Metrics -->
+            <div style="flex:1;padding:16px 20px;border-right:1px solid #e2e8f0;">
+                <h3 style="margin:0 0 12px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#64748b;">Order Ops Metrics</h3>
+                
+                <table style="width:100%;border-collapse:collapse;font-size:11px;">
+                    <thead>
+                        <tr style="background:#f8fafc;">
+                            <th style="text-align:left;padding:6px 8px;border-bottom:1px solid #e2e8f0;color:#64748b;font-weight:600;">Metric</th>
+                            <th style="text-align:right;padding:6px 8px;border-bottom:1px solid #e2e8f0;color:#059669;font-weight:600;">Drone</th>
+                            <th style="text-align:right;padding:6px 8px;border-bottom:1px solid #e2e8f0;color:#2563eb;font-weight:600;">Rider</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Order Created</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-family:monospace;">19:56</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-family:monospace;">19:46</td>
+                        </tr>
+                        <tr style="background:#fafafa;">
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Order Delivered</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-family:monospace;">20:36</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-family:monospace;">20:21</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;font-weight:600;">Total Duration</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;">~40 min</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-weight:600;color:#2563eb;">~35 min</td>
+                        </tr>
+                        <tr style="background:#fafafa;">
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Est. Order Duration</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;">30-40 min</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;">25-45 min</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Stacking</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;"><span style="background:#e2e8f0;color:#64748b;padding:2px 6px;border-radius:3px;font-size:9px;">No</span></td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;"><span style="background:#d1fae5;color:#166534;padding:2px 6px;border-radius:3px;font-size:9px;">Yes · 1st of 2</span></td>
+                        </tr>
+                        <tr style="background:#fafafa;">
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Lateness (from upper bound)</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;color:#059669;">0 min (on time)</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;color:#059669;">-9 min (early)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Timeliness</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;"><span style="background:#22C55E;color:white;padding:2px 6px;border-radius:3px;font-size:9px;">On Time</span></td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;"><span style="background:#22C55E;color:white;padding:2px 6px;border-radius:3px;font-size:9px;">Early</span></td>
+                        </tr>
+                        <tr style="background:#fafafa;">
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;">Distance (Rx to Cx)</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;">1,240 m</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;text-align:right;">913 m</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:5px 8px;border-bottom:1px solid #e2e8f0;font-weight:600;">Total Paid</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:600;">€28.09</td>
+                            <td style="padding:5px 8px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:600;">€29.18 <span style="font-weight:400;color:#64748b;font-size:10px;">(+€1.09)</span></td>
+                        </tr>
+                        <tr style="background:#fafafa;">
+                            <td style="padding:5px 8px;padding-left:16px;color:#64748b;font-size:10px;">Order Value / Delivery / Service</td>
+                            <td style="padding:5px 8px;text-align:right;font-size:10px;">€26.50 / €0 / €1.59</td>
+                            <td style="padding:5px 8px;text-align:right;font-size:10px;">€25.00 / €0 / €1.50 / €2.68 tip</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Right Column: Customer Perceptions -->
+            <div style="flex:1;padding:16px 20px;">
+                <h3 style="margin:0 0 12px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#64748b;">Customer Perceptions (Diary)</h3>
+                
+                <!-- Temperature -->
+                <div style="background:#fafafa;padding:10px 12px;border-radius:8px;margin-bottom:10px;border-left:3px solid #059669;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                        <span style="font-weight:600;font-size:11px;color:#1e293b;">Temperature</span>
+                        <span style="background:#059669;color:white;padding:2px 6px;border-radius:3px;font-size:9px;">DRONE WINS</span>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-bottom:6px;">
+                        <div style="flex:1;text-align:center;padding:8px;background:white;border-radius:4px;">
+                            <div style="font-size:18px;font-weight:700;color:#059669;">42.9°C</div>
+                            <div style="font-size:9px;color:#64748b;">Drone</div>
+                        </div>
+                        <div style="flex:1;text-align:center;padding:8px;background:white;border-radius:4px;">
+                            <div style="font-size:18px;font-weight:700;color:#dc2626;">38.6°C</div>
+                            <div style="font-size:9px;color:#64748b;">Rider</div>
+                        </div>
+                    </div>
+                    <div style="font-size:10px;color:#64748b;font-style:italic;"><span style="color:#64748b;font-weight:600;">[Drone]</span> "I was expecting it to be a lot cooler... it actually didn't" – chips stayed hotter than expected</div>
+                </div>
+                
+                <!-- Food Condition -->
+                <div style="background:#fafafa;padding:10px 12px;border-radius:8px;margin-bottom:10px;border-left:3px solid #64748b;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                        <span style="font-weight:600;font-size:11px;color:#1e293b;">Food Condition</span>
+                        <span style="background:#64748b;color:white;padding:2px 6px;border-radius:3px;font-size:9px;">NO ISSUES</span>
+                    </div>
+                    <div style="font-size:10px;color:#64748b;"><span style="color:#64748b;font-weight:600;">[Both]</span> "No issues with my delivery" – Drone included free bottle of water; rider had no thermal bag</div>
+                </div>
+                
+                <!-- Collection Experience -->
+                <div style="background:#ecfdf5;padding:10px 12px;border-radius:8px;margin-bottom:10px;border-left:3px solid #059669;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                        <span style="font-weight:600;font-size:11px;color:#1e293b;">Collection</span>
+                        <span style="background:#059669;color:white;padding:2px 6px;border-radius:3px;font-size:9px;">DRONE WINS</span>
+                    </div>
+                    <div style="font-size:10px;color:#166534;"><span style="color:#059669;font-weight:600;">[Drone]</span> "I can walk out in my pajamas and nobody's going to be there" – Shows front/back garden option</div>
+                    <div style="font-size:10px;color:#64748b;margin-top:4px;"><span style="color:#2563eb;font-weight:600;">[Rider]</span> "No problems... driver contacted me to say he was outside"</div>
+                </div>
+                
+                <!-- Overall Preference -->
+                <div style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);padding:10px 12px;border-radius:8px;border-left:3px solid #059669;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                        <span style="font-weight:600;font-size:11px;color:#1e293b;">Overall Preference</span>
+                        <span style="background:#059669;color:white;padding:2px 6px;border-radius:3px;font-size:9px;">DRONE</span>
+                    </div>
+                    <div style="font-size:10px;color:#166534;font-style:italic;">"I actually much prefer the drone delivery, even though it was later because the food was hotter and I got a free bottle of water"</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Section: Improvements + Score Summary -->
+        <div style="display:flex;border-top:1px solid #e2e8f0;background:#f8fafc;">
+            <!-- Improvement Suggestions -->
+            <div style="flex:2;padding:12px 20px;border-right:1px solid #e2e8f0;">
+                <h3 style="margin:0 0 8px;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#92400e;">Drone Improvement Suggestions</h3>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <span style="background:white;padding:4px 8px;border-radius:4px;font-size:10px;color:#64748b;border:1px solid #e2e8f0;">Enable reorder across delivery methods</span>
+                </div>
+            </div>
+            
+            <!-- Score Summary -->
+            <div style="flex:1;padding:12px 20px;display:flex;gap:16px;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:20px;font-weight:800;color:#059669;">2</div>
+                    <div style="font-size:9px;color:#64748b;font-weight:600;">Drone Wins</div>
+                    <div style="font-size:8px;color:#94a3b8;margin-top:2px;">Temperature · Collection</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:20px;font-weight:800;color:#2563eb;">1</div>
+                    <div style="font-size:9px;color:#64748b;font-weight:600;">Rider Wins</div>
+                    <div style="font-size:8px;color:#94a3b8;margin-top:2px;">Speed</div>
+                </div>
+                <div style="text-align:center;padding:6px 10px;background:#d1fae5;border-radius:6px;">
+                    <div style="font-size:9px;color:#166534;font-weight:600;">PICK</div>
+                    <div style="font-size:11px;color:#166534;">Drone</div>
+                </div>
+            </div>
+            
+            <!-- Ratings (Downplayed) -->
+            <div style="padding:12px 16px;background:#f1f5f9;display:flex;gap:10px;align-items:center;">
+                <div style="font-size:8px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;">Order<br>Rating</div>
+                <div style="text-align:center;">
+                    <div style="font-size:9px;color:#64748b;">Drone</div>
+                    <div style="font-size:14px;font-weight:600;color:#059669;">8</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:9px;color:#64748b;">Rider</div>
+                    <div style="font-size:14px;font-weight:600;color:#2563eb;">—</div>
+                </div>
+                <div style="font-size:8px;color:#94a3b8;">/10</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="padding:8px 20px;background:#0f172a;font-size:9px;color:#64748b;text-align:center;">
+            Data: Production.Denormalised.Orders | Diary: Tasks 4-6 | <span style="font-weight:700;color:white;">*Rider order placed 6 days later (Tue 18 Jan drone vs Fri 24 Jan rider)</span>
+        </div>
+    </div>
+</body>
+</html>

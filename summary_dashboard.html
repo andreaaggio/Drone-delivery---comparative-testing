@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Drone vs Rider - Summary Dashboard</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; padding: 12px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 16px 24px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 20px; font-weight: 700; }
+        .header .subtitle { font-size: 12px; opacity: 0.7; margin-top: 2px; }
+        .header .meta { font-size: 10px; opacity: 0.5; text-align: right; }
+        
+        /* Key Stats Row */
+        .stats-row { display: flex; background: white; border-bottom: 1px solid #e2e8f0; }
+        .stat-box { flex: 1; padding: 12px 16px; text-align: center; border-right: 1px solid #e2e8f0; }
+        .stat-box:last-child { border-right: none; }
+        .stat-box.drone { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+        .stat-box.rider { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+        .stat-box.neutral { background: #fafafa; }
+        .stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; font-weight: 600; margin-bottom: 4px; }
+        .stat-value { font-size: 28px; font-weight: 800; }
+        .stat-value.drone { color: #059669; }
+        .stat-value.rider { color: #2563eb; }
+        .stat-detail { font-size: 9px; color: #64748b; margin-top: 2px; }
+        
+        /* Main Grid */
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        
+        /* Section */
+        .section { padding: 14px 18px; border-bottom: 1px solid #e2e8f0; }
+        .section:nth-child(odd) { border-right: 1px solid #e2e8f0; }
+        .section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .section-title::before { content: ''; width: 3px; height: 12px; background: #0f172a; border-radius: 2px; }
+        
+        /* Metric Row */
+        .metric-row { margin-bottom: 10px; }
+        .metric-row:last-child { margin-bottom: 0; }
+        .metric-label { font-size: 10px; font-weight: 600; color: #1e293b; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .metric-bars { display: flex; gap: 6px; align-items: center; }
+        .bar-container { flex: 1; height: 24px; background: #f1f5f9; border-radius: 4px; overflow: hidden; position: relative; }
+        .bar { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: white; }
+        .bar.drone { background: linear-gradient(90deg, #059669, #10b981); }
+        .bar.rider { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+        .vs { font-size: 9px; color: #94a3b8; font-weight: 600; }
+        
+        /* Winner Badge */
+        .winner-badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 8px; font-weight: 700; text-transform: uppercase; }
+        .winner-badge.drone { background: #d1fae5; color: #059669; }
+        .winner-badge.rider { background: #dbeafe; color: #2563eb; }
+        .winner-badge.tie { background: #f1f5f9; color: #64748b; }
+        
+        /* Temperature Boxes */
+        .temp-row { display: flex; gap: 12px; }
+        .temp-box { flex: 1; background: #fafafa; border-radius: 6px; padding: 10px; text-align: center; }
+        .temp-box.drone { border: 2px solid #059669; }
+        .temp-box.rider { border: 2px solid #2563eb; }
+        .temp-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 4px; }
+        .temp-box.drone .temp-label { color: #059669; }
+        .temp-box.rider .temp-label { color: #2563eb; }
+        .temp-value { font-size: 22px; font-weight: 800; }
+        .temp-box.drone .temp-value { color: #059669; }
+        .temp-box.rider .temp-value { color: #2563eb; }
+        .temp-range { font-size: 9px; color: #64748b; margin-top: 2px; }
+        .temp-winner { margin-top: 6px; }
+        
+        /* Insight Box */
+        .insight-box { background: #fef3c7; border-radius: 6px; padding: 10px; border-left: 3px solid #f59e0b; margin-top: 10px; }
+        .insight-box.critical { background: #fef2f2; border-left-color: #dc2626; }
+        .insight-title { font-size: 9px; font-weight: 700; color: #92400e; text-transform: uppercase; margin-bottom: 4px; }
+        .insight-box.critical .insight-title { color: #dc2626; }
+        .insight-text { font-size: 10px; color: #475569; line-height: 1.4; }
+        
+        /* Issue Grid */
+        .issue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .issue-box { background: #fafafa; border-radius: 6px; padding: 10px; }
+        .issue-box.drone { border-top: 3px solid #059669; }
+        .issue-box.rider { border-top: 3px solid #2563eb; }
+        .issue-header { font-size: 10px; font-weight: 700; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .issue-box.drone .issue-header { color: #059669; }
+        .issue-box.rider .issue-header { color: #2563eb; }
+        .issue-count { font-size: 18px; font-weight: 800; }
+        .issue-list { font-size: 9px; color: #64748b; line-height: 1.5; }
+        
+        /* Footer */
+        .footer { background: #0f172a; padding: 8px 18px; font-size: 9px; color: #64748b; text-align: center; }
+        
+        /* Collection Quotes */
+        .quote-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+        .quote-box { background: #ecfdf5; border-radius: 6px; padding: 8px; border-left: 3px solid #059669; }
+        .quote-text { font-size: 9px; color: #166534; font-style: italic; line-height: 1.4; }
+        .quote-author { font-size: 8px; color: #059669; font-weight: 600; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>Drone vs Rider Delivery — Operational Metrics Summary</h1>
+                <div class="subtitle">Comparative testing across 10 participants</div>
+            </div>
+            <div class="meta">Jan/Feb 2026<br>Deliveroo Drone Delivery</div>
+        </div>
+        
+        <!-- Key Stats Row -->
+        <div class="stats-row">
+            <div class="stat-box drone">
+                <div class="stat-label">Prefer Drone</div>
+                <div class="stat-value drone">5</div>
+                <div class="stat-detail">Stephanie, Eimear, Ciaran, Sarah, Laura</div>
+            </div>
+            <div class="stat-box rider">
+                <div class="stat-label">Prefer Rider</div>
+                <div class="stat-value rider">5</div>
+                <div class="stat-detail">Anna, Rhea, Sinead, Ishan, Georgia</div>
+            </div>
+            <div class="stat-box neutral">
+                <div class="stat-label">Avg Drone Rating</div>
+                <div class="stat-value drone">6.4</div>
+                <div class="stat-detail">out of 10 (n=10)</div>
+            </div>
+            <div class="stat-box neutral">
+                <div class="stat-label">Avg Rider Rating</div>
+                <div class="stat-value rider">6.8</div>
+                <div class="stat-detail">out of 10 (n=9)</div>
+            </div>
+        </div>
+        
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            
+            <!-- Speed & Timeliness -->
+            <div class="section">
+                <div class="section-title">Speed & Timeliness (Same-Day Orders, n=8)</div>
+                
+                <div class="metric-row">
+                    <div class="metric-label">
+                        <span>Average Order Duration</span>
+                    </div>
+                    <div class="metric-bars">
+                        <div class="bar-container">
+                            <div class="bar drone" style="width: 75%;">36 min</div>
+                        </div>
+                        <span class="vs">vs</span>
+                        <div class="bar-container">
+                            <div class="bar rider" style="width: 90%;">44 min</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-row">
+                    <div class="metric-label">
+                        <span>On Time/Early vs. Estimated order duration range</span>
+                        <span><span class="winner-badge drone">Drone: 4</span> <span class="winner-badge rider">Rider: 5</span></span>
+                    </div>
+                    <div class="metric-bars">
+                        <div class="bar-container">
+                            <div class="bar drone" style="width: 50%;">50%</div>
+                        </div>
+                        <span class="vs">vs</span>
+                        <div class="bar-container">
+                            <div class="bar rider" style="width: 62.5%;">62.5%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-row">
+                    <div class="metric-label">
+                        <span>Late vs. Estimated order duration (upper bound)</span>
+                        <span><span class="winner-badge drone">Drone: 4 (2 B10)</span> <span class="winner-badge rider">Rider: 3 (3 B10)</span></span>
+                    </div>
+                    <div class="metric-bars">
+                        <div class="bar-container">
+                            <div class="bar drone" style="width: 50%;">50%</div>
+                        </div>
+                        <span class="vs">vs</span>
+                        <div class="bar-container">
+                            <div class="bar rider" style="width: 37.5%;">37.5%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-box">
+                    <div class="insight-title">Critical Finding</div>
+                    <div class="insight-text"><strong>Speed alone doesn't determine preference.</strong> Rhea chose rider despite drone being 22 minutes faster — temperature and food quality override speed.</div>
+                </div>
+            </div>
+            
+            <!-- Temperature -->
+            <div class="section">
+                <div class="section-title">Temperature Performance — The Decisive Factor</div>
+                
+                <div class="temp-row">
+                    <div class="temp-box drone">
+                        <div class="temp-label">Drone Average</div>
+                        <div class="temp-value">47.6°C</div>
+                        <div class="temp-range">Range: 31.6°C – 74.1°C</div>
+                        <div class="temp-winner"><span class="winner-badge drone">Won 4 of 10</span></div>
+                    </div>
+                    <div class="temp-box rider">
+                        <div class="temp-label">Rider Average</div>
+                        <div class="temp-value">51.2°C</div>
+                        <div class="temp-range">Range: 31.9°C – 66.9°C</div>
+                        <div class="temp-winner"><span class="winner-badge rider">Won 6 of 10</span></div>
+                    </div>
+                </div>
+                
+                <div class="insight-box critical">
+                    <div class="insight-title">4 of 5 Rider-Preferring Participants Cited Temperature</div>
+                    <div class="insight-text">
+                        Anna: "food was cold to the taste" · Rhea: "food felt room temperature" · Sinead: "food warmth meant rider was better" · Georgia: "water brought temp down"
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Food Condition -->
+            <div class="section">
+                <div class="section-title">Food Condition Issues</div>
+                
+                <div class="issue-grid">
+                    <div class="issue-box drone">
+                        <div class="issue-header">
+                            <span>Drone Issues</span>
+                            <span class="issue-count">2</span>
+                        </div>
+                        <div class="issue-list">
+                            <strong>Spills/Leaks:</strong> Anna (sauce spilled over wings), Laura (bowl tilted, lid opened, leaked)
+                        </div>
+                    </div>
+                    <div class="issue-box rider">
+                        <div class="issue-header">
+                            <span>Rider Issues</span>
+                            <span class="issue-count">2</span>
+                        </div>
+                        <div class="issue-list">
+                            <strong>Missing items:</strong> Ishan (sauces missing)<br>
+                            <strong>Presentation:</strong> Sarah (burger messy)
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 10px; padding: 8px; background: #f8fafc; border-radius: 6px; font-size: 9px; color: #64748b;">
+                    <strong>No issues reported:</strong> 8 of 10 drone orders, 8 of 10 rider orders
+                </div>
+            </div>
+            
+            <!-- Collection Experience -->
+            <div class="section">
+                <div class="section-title">Collection Experience — Drone Advantages</div>
+                
+                <div class="quote-grid">
+                    <div class="quote-box">
+                        <div class="quote-text">"I can walk out in my pajamas and nobody's going to be there"</div>
+                        <div class="quote-author">— Stephanie</div>
+                    </div>
+                    <div class="quote-box">
+                        <div class="quote-text">"I don't have to run to answer the door"</div>
+                        <div class="quote-author">— Sarah</div>
+                    </div>
+                    <div class="quote-box">
+                        <div class="quote-text">"I don't need to give the code"</div>
+                        <div class="quote-author">— Laura</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 10px; padding: 8px; background: #fef3c7; border-radius: 6px; font-size: 9px; color: #92400e;">
+                    <strong>Friction points:</strong> String management (4 mentions: Ciaran, Eimear, Ishan, Laura) · Noise/neighbor concerns (2: Anna, Sinead)
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            Data Sources: Production.Denormalised.Orders (Snowflake) | Participant Diaries (Tasks 4-6) | 10 Participants | Jan/Feb 2026
+        </div>
+    </div>
+</body>
+</html>

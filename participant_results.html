@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Participant-Level Results - Drone vs Rider</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 20px 24px; color: white; }
+        .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .header .subtitle { font-size: 12px; opacity: 0.7; }
+        
+        /* Table */
+        .table-container { padding: 20px; }
+        .score-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        .score-table th { 
+            text-align: left; 
+            padding: 10px 8px; 
+            background: #f8fafc; 
+            border-bottom: 2px solid #e2e8f0; 
+            color: #64748b; 
+            font-weight: 600; 
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .score-table td { 
+            padding: 10px 8px; 
+            border-bottom: 1px solid #f1f5f9; 
+            vertical-align: middle;
+        }
+        .score-table tr:hover { background: #fafafa; }
+        .score-table .participant { font-weight: 600; color: #1e293b; }
+        .score-table .drone-col { color: #059669; text-align: center; }
+        .score-table .rider-col { color: #2563eb; text-align: center; }
+        .score-table .winner-col { text-align: center; }
+        .score-table .better { font-weight: 700; }
+        .score-table .note { font-size: 9px; color: #94a3b8; display: block; margin-top: 2px; }
+        
+        /* Winner Badge */
+        .winner-badge { 
+            display: inline-block; 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            font-size: 10px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+        }
+        .winner-badge.drone { background: #d1fae5; color: #059669; }
+        .winner-badge.rider { background: #dbeafe; color: #2563eb; }
+        
+        /* Footer */
+        .footer { 
+            background: #f8fafc; 
+            padding: 16px 24px; 
+            font-size: 10px; 
+            color: #64748b; 
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .footer-item strong { color: #1e293b; display: block; margin-bottom: 4px; }
+        
+        /* Legend */
+        .legend { 
+            display: flex; 
+            gap: 20px; 
+            padding: 12px 20px; 
+            background: #fafafa; 
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 10px;
+            color: #64748b;
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-color { width: 12px; height: 12px; border-radius: 3px; }
+        .legend-color.drone { background: #059669; }
+        .legend-color.rider { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Participant-Level Results</h1>
+            <div class="subtitle">Drone vs Rider Comparative Testing | 10 Participants | Jan/Feb 2026</div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color drone"></div> Drone metrics</div>
+            <div class="legend-item"><div class="legend-color rider"></div> Rider metrics</div>
+            <div class="legend-item"><strong>Bold</strong> = Better result in that comparison</div>
+            <div class="legend-item"><em>*Different days</em> = Orders placed on separate days</div>
+        </div>
+        
+        <!-- Table -->
+        <div class="table-container">
+            <table class="score-table">
+                <thead>
+                    <tr>
+                        <th>Participant</th>
+                        <th>Restaurant</th>
+                        <th class="drone-col">Drone<br>Duration</th>
+                        <th class="rider-col">Rider<br>Duration</th>
+                        <th class="drone-col">Drone<br>Timeliness</th>
+                        <th class="rider-col">Rider<br>Timeliness</th>
+                        <th class="drone-col">Drone<br>Temp</th>
+                        <th class="rider-col">Rider<br>Temp</th>
+                        <th class="drone-col">Drone<br>Rating</th>
+                        <th class="rider-col">Rider<br>Rating</th>
+                        <th class="winner-col">Preference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="participant">Anna</td>
+                        <td>Captain Americas</td>
+                        <td class="drone-col">52 min</td>
+                        <td class="rider-col better">31 min</td>
+                        <td class="drone-col" style="color:#dc2626;">+12 min<br><span class="note">B10 Late</span></td>
+                        <td class="rider-col better" style="color:#059669;">On Time</td>
+                        <td class="drone-col">45.6°C</td>
+                        <td class="rider-col better">57.9°C</td>
+                        <td class="drone-col">3</td>
+                        <td class="rider-col better">8</td>
+                        <td class="winner-col"><span class="winner-badge rider">Rider</span></td>
+                    </tr>
+                    <tr style="background:#fefce8;">
+                        <td class="participant">Stephanie<span class="note">*Different days</span></td>
+                        <td>Wowburger</td>
+                        <td class="drone-col">40 min</td>
+                        <td class="rider-col better">35 min</td>
+                        <td class="drone-col" style="color:#059669;">On Time</td>
+                        <td class="rider-col better" style="color:#059669;">9 min early</td>
+                        <td class="drone-col better">42.9°C</td>
+                        <td class="rider-col">38.6°C</td>
+                        <td class="drone-col better">8</td>
+                        <td class="rider-col">—</td>
+                        <td class="winner-col"><span class="winner-badge drone">Drone</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Rhea</td>
+                        <td>The Smash D15</td>
+                        <td class="drone-col better">38 min</td>
+                        <td class="rider-col">60 min</td>
+                        <td class="drone-col better" style="color:#059669;">On Time</td>
+                        <td class="rider-col" style="color:#dc2626;">+22 min<br><span class="note">Late</span></td>
+                        <td class="drone-col">54.0°C</td>
+                        <td class="rider-col better">63.0°C</td>
+                        <td class="drone-col better">7</td>
+                        <td class="rider-col">5</td>
+                        <td class="winner-col"><span class="winner-badge rider">Rider</span></td>
+                    </tr>
+                    <tr style="background:#fefce8;">
+                        <td class="participant">Eimear<span class="note">*Different days</span></td>
+                        <td>Boojum</td>
+                        <td class="drone-col better">23 min</td>
+                        <td class="rider-col">41 min</td>
+                        <td class="drone-col better" style="color:#059669;">On Time</td>
+                        <td class="rider-col" style="color:#dc2626;">+11 min<br><span class="note">B10 Late</span></td>
+                        <td class="drone-col better">35.7°C</td>
+                        <td class="rider-col">31.9°C</td>
+                        <td class="drone-col better">7</td>
+                        <td class="rider-col">6</td>
+                        <td class="winner-col"><span class="winner-badge drone">Drone</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Ciaran</td>
+                        <td>The Chicken</td>
+                        <td class="drone-col better">43 min</td>
+                        <td class="rider-col">58 min</td>
+                        <td class="drone-col" style="color:#dc2626;">+8 min<br><span class="note">B10 Late</span></td>
+                        <td class="rider-col better" style="color:#059669;">7 min early</td>
+                        <td class="drone-col better">74.1°C</td>
+                        <td class="rider-col">62.9°C</td>
+                        <td class="drone-col better">8</td>
+                        <td class="rider-col">7</td>
+                        <td class="winner-col"><span class="winner-badge drone">Drone</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Sinead</td>
+                        <td>The Chicken</td>
+                        <td class="drone-col better">37 min</td>
+                        <td class="rider-col">71 min</td>
+                        <td class="drone-col" style="color:#dc2626;">+2 min<br><span class="note">Late</span></td>
+                        <td class="rider-col better" style="color:#059669;">On Time</td>
+                        <td class="drone-col">65.0°C</td>
+                        <td class="rider-col better">66.9°C</td>
+                        <td class="drone-col">6.5</td>
+                        <td class="rider-col better">7</td>
+                        <td class="winner-col"><span class="winner-badge rider">Rider</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Sarah</td>
+                        <td>Wowburger</td>
+                        <td class="drone-col">37 min</td>
+                        <td class="rider-col better">31 min</td>
+                        <td class="drone-col" style="color:#059669;">On Time</td>
+                        <td class="rider-col better" style="color:#059669;">On Time</td>
+                        <td class="drone-col better">41.8°C</td>
+                        <td class="rider-col">38.3°C</td>
+                        <td class="drone-col better">7</td>
+                        <td class="rider-col">6</td>
+                        <td class="winner-col"><span class="winner-badge drone">Drone</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Ishan</td>
+                        <td>Boojum</td>
+                        <td class="drone-col better">25 min</td>
+                        <td class="rider-col">33 min</td>
+                        <td class="drone-col better" style="color:#059669;">On Time</td>
+                        <td class="rider-col" style="color:#dc2626;">+8 min<br><span class="note">B10 Late</span></td>
+                        <td class="drone-col">43.6°C</td>
+                        <td class="rider-col better">49.3°C</td>
+                        <td class="drone-col">4</td>
+                        <td class="rider-col better">7</td>
+                        <td class="winner-col"><span class="winner-badge rider">Rider</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Laura</td>
+                        <td>Boojum</td>
+                        <td class="drone-col better">25 min</td>
+                        <td class="rider-col">50 min</td>
+                        <td class="drone-col better" style="color:#059669;">On Time</td>
+                        <td class="rider-col" style="color:#dc2626;">+14 min<br><span class="note">B10 Late</span></td>
+                        <td class="drone-col">31.6°C</td>
+                        <td class="rider-col better">37.6°C</td>
+                        <td class="drone-col better">7.5</td>
+                        <td class="rider-col">6</td>
+                        <td class="winner-col"><span class="winner-badge drone">Drone</span></td>
+                    </tr>
+                    <tr>
+                        <td class="participant">Georgia</td>
+                        <td>Wowburger</td>
+                        <td class="drone-col">43 min</td>
+                        <td class="rider-col better">21 min</td>
+                        <td class="drone-col" style="color:#dc2626;">+3 min<br><span class="note">Late</span></td>
+                        <td class="rider-col better" style="color:#059669;">On Time</td>
+                        <td class="drone-col">41.9°C</td>
+                        <td class="rider-col better">55.7°C</td>
+                        <td class="drone-col">7</td>
+                        <td class="rider-col better">9</td>
+                        <td class="winner-col"><span class="winner-badge rider">Rider</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Footer Summary -->
+        <div class="footer">
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <strong>Speed Winner (Same-Day, n=8)</strong>
+                    Drone: 5 | Rider: 3
+                </div>
+                <div class="footer-item">
+                    <strong>Temperature Winner (n=10)</strong>
+                    Drone: 4 | Rider: 6
+                </div>
+                <div class="footer-item">
+                    <strong>Overall Preference (n=10)</strong>
+                    Drone: 5 | Rider: 5
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
